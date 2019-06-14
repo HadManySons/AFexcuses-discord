@@ -1,2 +1,2 @@
 # AFexcuses
-A reddit bot for /r/AirForce that generates a generic Air Force excuse on command
+A bot for /r/AirForce discord server that generates a generic Air Force excuse on command
