@@ -4,22 +4,14 @@ import logging
 import time
 import os
 import sys
-from BotCreds import credsClientSecret, admins
-
+import ast
 # Initialize a logging object and have some examples below from the Python
 logging.basicConfig(filename='AFexcuses-discord.log', level=logging.INFO)
 
-# Get the PID of this process
-pid = str(os.getpid())
-pidfile = "AFexcuses-discord.pid"
-
-# Exit if a instance of the bot is already running
-if os.path.isfile(pidfile):
-    print(pidfile + " already running, exiting")
-    sys.exit()
-
-# Create the lock file for the bot
-open(pidfile, 'w').write(pid)
+credsClientSecret = os.environ.get('AFED_SECRET')
+print(credsClientSecret)
+admins = ast.literal_eval(str(os.environ.get("AFED_ADMINS")))
+print(type(admins))
 
 logging.info(time.strftime("%Y/%m/%d %H:%M:%S ") + "Starting bot")
 
@@ -99,7 +91,6 @@ while True:
 
     finally:
         if restart == True:
-            os.unlink(pidfile)
             sys.exit(1)
         else:
             sys.exit(2)
