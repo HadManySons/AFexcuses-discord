@@ -8,9 +8,13 @@ import ast
 # Initialize a logging object and have some examples below from the Python
 logging.basicConfig(filename='AFexcuses-discord.log', level=logging.INFO)
 
-credsClientSecret = os.environ.get('AFED_SECRET')
+with open("AFED_SECRET", "r") as f:
+    credsClientSecret = f.read()
+#credsClientSecret = os.environ.get('AFED_SECRET')
 print(credsClientSecret)
-admins = ast.literal_eval(str(os.environ.get("AFED_ADMINS")))
+#admins = ast.literal_eval(str(os.environ.get("AFED_ADMINS")))
+with open("AFED_ADMINS","r") as f:
+    admins = ast.literal_eval(str(f.read()))
 print(type(admins))
 
 logging.info(time.strftime("%Y/%m/%d %H:%M:%S ") + "Starting bot")
